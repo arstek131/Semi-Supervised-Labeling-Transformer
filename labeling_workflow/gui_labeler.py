@@ -1,13 +1,12 @@
 import os
-import random
 import json
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 import glob
+import random
 
-
-IMAGE_FOLDER = "/Users/ars/Desktop/dataset/dtp-sbm-segmentation-video-tasks-bars-stopper-alignment-images-hackaton-usi/train_set/good_light"
+IMAGE_FOLDER = "imgs"
 JSON_FILE = "image_labels.json"
 
 if os.path.exists(JSON_FILE):
@@ -16,24 +15,28 @@ if os.path.exists(JSON_FILE):
 else:
     labeled_data = {}
 
-image_paths = glob.glob(os.path.join(IMAGE_FOLDER, "*.jpg"))
+image_paths = [img for img in glob.glob(os.path.join(IMAGE_FOLDER, "*.jpg")) if img not in labeled_data]
 random.shuffle(image_paths)
 
 current_image_path = None
-counter = 0
+counter = len(labeled_data)
 
 def load_image():
-    global current_image_path, img_label, counter
+    global current_image_path
     if image_paths:
         current_image_path = random.choice(image_paths)
-        if current_image_path in labeled_data:
-            load_image() 
-            return
-        image = Image.open(current_image_path)
-        photo = ImageTk.PhotoImage(image)
-        img_label.config(image=photo)
-        img_label.image = photo
-        image_counter.config(text=f"Images labeled: {counter}")
+        if os.path.exists(current_image_path):
+            image = Image.open(current_image_path)
+            photo = ImageTk.PhotoImage(image)
+            img_label.config(image=photo)
+            img_label.image = photo
+            update_counter()
+        else:
+            messagebox.showinfo("Error", f"Image {current_image_path} not found.")
+            skip_image()
+    else:
+        messagebox.showinfo("Info", "All images have been labeled.")
+        root.quit()
 
 def skip_image():
     load_image()
@@ -44,13 +47,16 @@ def label_image(group1_label, group2_label):
         relative_image_path = os.path.relpath(current_image_path, os.path.dirname(IMAGE_FOLDER))
         labeled_data[relative_image_path] = [group1_label, group2_label]
         counter += 1
-        image_counter.config(text=f"Images labeled: {counter}")
+
         with open(JSON_FILE, 'w') as f:
             json.dump(labeled_data, f, indent=4)
-        load_image()
+
+        skip_image()
     else:
         messagebox.showinfo("Info", "Please select a label from both groups before proceeding.")
 
+def update_counter():
+    image_counter.config(text=f"Images labeled: {counter}")
 
 root = tk.Tk()
 root.title("Image Labeling Tool")
@@ -78,5 +84,4 @@ next_button = tk.Button(root, text="Next", command=lambda: label_image(group1_la
 next_button.grid(row=4, column=2, columnspan=2, pady=10)
 
 load_image()
-
 root.mainloop()

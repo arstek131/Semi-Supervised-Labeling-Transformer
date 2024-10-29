@@ -1,5 +1,15 @@
+# Core libraries
 torch
 torchvision
 numpy
 scikit-learn
 opencv-python
+Pillow
+tqdm
+faiss-cpu  # Choose faiss-gpu if GPU support is required
+
+# Transformers library
+transformers
+
+# Additional utilities
+tensorboard 
