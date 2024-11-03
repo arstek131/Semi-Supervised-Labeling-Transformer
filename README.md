@@ -116,3 +116,5 @@ Evaluate the model using:
 ```bash
 python test.py --data_config_path "dataset/split.json" --batch_size 16 --model_path "checkpoints/efficient_net/20241027_083453/model_epoch_10.pt"
 ```
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
