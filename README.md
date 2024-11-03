@@ -12,7 +12,7 @@ Manual inspection of steel bar alignment is a labor-intensive task that can lead
 ### Workflow Diagram
 
 ```mermaid
-graph LR
+graph TD
     subgraph Input["Initial Dataset"]
         A1[Raw Images] --> B1[Labeling Phase]
     end
@@ -38,17 +38,6 @@ graph LR
         G1 --> K1[Performance Metrics]
     end
 
-    style Input fill:#f0f8ff,stroke:#4682b4
-    style Labeling fill:#f6f8fa,stroke:#e1e4e8
-    style Training fill:#fffaf0,stroke:#deb887
-    style Inference fill:#f6f8fa,stroke:#e1e4e8
-    style Output fill:#f6f8fa,stroke:#e1e4e8
-
-    style C1 fill:#6a5acd,color:#ffffff
-    style D1 fill:#4682b4,color:#ffffff
-    style F1 fill:#22863a,color:#ffffff
-    style I1 fill:#d73a49,color:#ffffff
-    style J1 fill:#2ea44f,color:#ffffff
 
 ```
 
