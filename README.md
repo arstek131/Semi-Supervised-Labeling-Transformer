@@ -18,27 +18,31 @@ graph TD
     end
 
     subgraph Labeling["Semi-Supervised Labeling"]
-        B1 --> C1[DINO v2 Feature Extraction]
+        C1[DINO v2 Feature Extraction]
         C1 --> D1[FAISS Index & KNN Search]
         D1 --> E1[Label Assignment]
     end
 
+    B1 --> Labeling
+
     subgraph Training["Model Training"]
-        E1 --> F1[Train EfficientNet B0]
+        F1[Train EfficientNet B0]
         F1 --> G1[Trained Model]
     end
 
+    E1 --> Training
+
     subgraph Inference["Inference Phase"]
-        G1 --> H1[New Image Input]
+        H1[New Image Input]
         H1 --> I1[Predict Alignment Status]
     end
 
+    G1 --> Inference
+
     subgraph Output["Results"]
         I1 --> J1[Alignment Status Output]
-        G1 --> K1[Performance Metrics]
+        I1 --> K1[Performance Metrics]
     end
-
-
 ```
 
 ## Methodology
