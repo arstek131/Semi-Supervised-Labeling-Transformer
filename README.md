@@ -9,8 +9,6 @@ Manual inspection of steel bar alignment is a labor-intensive task that can lead
 1. **Semi-Supervised Labeling Workflow**
 2. **Model Training and Inference**
 
-### Workflow Diagram
-
 ```mermaid
 graph TD
     subgraph Input["Initial Dataset"]
