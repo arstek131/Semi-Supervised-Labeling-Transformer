@@ -9,6 +9,69 @@ Manual inspection of steel bar alignment is a labor-intensive task that can lead
 1. **Semi-Supervised Labeling Workflow**
 2. **Model Training and Inference**
 
+### Workflow Diagram
+
+```mermaid
+graph LR
+    subgraph Input["Initial Dataset"]
+        A1[Unlabeled Images] --> B1[Labeling Phase]
+    end
+
+    subgraph Feature["Feature Extraction"]
+        B1 --> C1[DINO v2 Model]
+        C1 --> D1[Feature Embeddings]
+        D1 --> E1[FAISS Index Creation]
+    end
+
+    E1 --> F1[K-Nearest Neighbor Search]
+    F1 --> G1[Cosine Similarity]
+    G1 --> H1[Majority Voting]
+    H1 --> I1[Label Assignment]
+
+    subgraph Labeling["Labeling Strategy"]
+        I1 --> J1[Expanded Labeled Dataset]
+    end
+
+    J1 --> K1[Data Preprocessing]
+
+    subgraph Training["Model Training"]
+        K1 --> L1[Train EfficientNet B0]
+        L1 --> M1[Trained Model]
+    end
+
+    M1 --> N1{Validation and Evaluation}
+    N1 --> O1[Performance Metrics]
+    O1 --> P1[Analysis & Feedback]
+    
+    subgraph Inference["Inference Phase"]
+        M1 --> Q1[New Image Input]
+        Q1 --> R1[Feature Extraction]
+        R1 --> S1[Predict Alignment]
+    end
+
+    S1 --> T1[Alignment Status Output]
+
+    P1 --> T1
+
+    subgraph Output["Results"]
+        T1 --> U1[Final Metrics]
+    end
+
+    style Input fill:#f0f8ff,stroke:#4682b4
+    style Feature fill:#f8f9fa,stroke:#e0e4cc
+    style Labeling fill:#f6f8fa,stroke:#e1e4e8
+    style Training fill:#fffaf0,stroke:#deb887
+    style Inference fill:#f6f8fa,stroke:#e1e4e8
+    style Output fill:#f6f8fa,stroke:#e1e4e8
+
+    style C1 fill:#6a5acd,color:#ffffff
+    style E1 fill:#4682b4,color:#ffffff
+    style F1 fill:#6f42c1,color:#ffffff
+    style L1 fill:#22863a,color:#ffffff
+    style S1 fill:#d73a49,color:#ffffff
+    style T1 fill:#2ea44f,color:#ffffff
+```
+
 ## Methodology
 
 ### 1. Semi-Supervised Labeling Workflow
