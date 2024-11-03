@@ -61,7 +61,7 @@ This method enabled us to expand the labeled dataset efficiently without manual 
 
 
 ## 2. Model Training and Inference
-The expanded dataset was used to train an [**EfficientNet B0**] (https://pytorch.org/vision/main/models/generated/torchvision.models.efficientnet_b0.html) model, chosen for its balance of accuracy and computational efficiency:
+The expanded dataset was used to train an [**EfficientNet B0**](https://pytorch.org/vision/main/models/generated/torchvision.models.efficientnet_b0.html) model, chosen for its balance of accuracy and computational efficiency:
 
 - **Preprocessing**: Images were resized to 256 pixels, centrally cropped to 224 pixels, and normalized using the mean [0.485, 0.456, 0.406] and standard deviation [0.229, 0.224, 0.225].
 - **Model Architecture**: We fine-tuned EfficientNet B0, adapting the classification layer to output a binary classification result for the alignment status.
