@@ -1,6 +1,6 @@
 # Semi-Supervised Labeling with Vision Transformers for Alignment Detection
 
-This repository contains the codebase developed by the **CUDA_Libre** team for the [Neural Wave Hackathon 2024](https://neuralwave.ch/#/), where our solution earned **1<sup>st</sup>** place. The project automates the verification of steel bar alignment in a rolling mill using state-of-the-art AI methodologies to enhance operational efficiency and minimize human error.
+This repository contains the codebase developed by the **CUDA_Libre** team for the [Neural Wave Hackathon 2024](https://neuralwave.ch/#/2024/recap), where our solution earned **1<sup>st</sup>** place. The project automates the verification of steel bar alignment in a rolling mill using state-of-the-art AI methodologies to enhance operational efficiency and minimize human error.
 
 ## Project Overview
 
